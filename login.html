@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+
+        body {
+            font-family: Arial, sans-serif; /* Normal font */
+            background-color: rgba(255, 255, 255, 0.4); /* White background with 60% transparency */
+            background-image: url('login_background_image.webp'); /* Your local background image */
+            background-size: cover; /* Make sure the image covers the whole screen */
+            background-position: center center; /* Center the image */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background: linear-gradient(to bottom, #000, #333); /* Black gradient fading from top to bottom */
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+            border: 3px solid #FFD700; /* Golden border */
+            box-shadow: 0 0 20px 5px rgba(255, 215, 0, 0.8); /* Golden glow effect */
+        }
+
+        .login-container h2 {
+            color: #FFD700; /* Golden color */
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.8); /* Golden glowing text */
+        }
+
+        .login-container label {
+            display: block;
+            color: #FFD700; /* Golden color */
+            text-align: left;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .login-container button {
+            background-color: #FFD700; /* Golden button */
+            color: #000; /* Black text */
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.8); /* Golden glow effect */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .login-container button:hover {
+            background-color: #ffcc00; /* Darker gold on hover */
+            box-shadow: 0 0 25px 10px rgba(255, 215, 0, 0.9); /* Stronger glowing effect */
+        }
+
+        .message {
+            margin-top: 10px;
+            color: #FFD700; /* Golden message text */
+        }
+
+        .new-user {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #FFD700; /* Golden text */
+        }
+
+        .new-user a {
+            color: #FFD700; /* Golden color */
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        /* Media Queries for responsiveness */
+        @media (max-width: 768px) {
+            .login-container {
+                padding: 15px 20px;
+                max-width: 90%; /* Allow the container to take up more space on tablets */
+            }
+
+            .login-container h2 {
+                font-size: 22px;
+            }
+
+            .login-container input {
+                font-size: 16px; /* Increase input font size for better readability */
+            }
+
+            .login-container button {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                max-width: 100%; /* Full width on mobile */
+            }
+
+            .login-container h2 {
+                font-size: 20px; /* Smaller title on mobile */
+            }
+
+            .login-container input {
+                font-size: 18px; /* Larger input font size for mobile */
+            }
+
+            .login-container button {
+                font-size: 20px; /* Larger button font size for mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+        <p class="message" id="message"></p>
+        <p class="new-user">New user? <a href="#">Create an account</a></p>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent form submission
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            if (username && password) {
+                const uniqueId = Math.floor(100000000000 + Math.random() * 900000000000); // Generate a 12-digit unique number
+
+                // Log the unique ID and username to the console
+                console.log(`Welcome, ${username}! Your unique ID is: ${uniqueId}`);
+
+                // Simulate navigation to the home page
+                setTimeout(() => {
+                    alert(`Redirecting to home page for user: ${username}`);
+                    window.location.href = "home.html"; // Replace with the actual home page URL
+                }, 1000);
+
+                // Reset the form
+                document.getElementById("loginForm").reset();
+            } else {
+                document.getElementById("message").textContent = "Please fill in all fields.";
+            }
+        });
+    </script>
+</body>
+</html>
+
+
