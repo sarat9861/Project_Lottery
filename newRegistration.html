@@ -1,0 +1,243 @@
+<!-- modified on 19 jan -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* background-color: black; */
+            background-image: url('login_background_image.webp');
+            color: goldenrod;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .registration-container {
+            background: linear-gradient(to bottom, #000000, #333333);
+            border-radius: 15px;
+            padding: 20px 40px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 0 15px 5px goldenrod;
+        }
+
+        .registration-container h1, .registration-container h2 {
+            text-align: center;
+            color: goldenrod;
+            text-shadow: 0 0 8px goldenrod;
+        }
+
+        .registration-container h1 {
+            font-family: "Georgia", serif;
+            margin-bottom: 10px;
+        }
+
+        .registration-container h2 {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: goldenrod;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid goldenrod;
+            border-radius: 10px;
+            box-sizing: border-box;
+            background-color: black;
+            color: goldenrod;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 0 0 5px #ffd700;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: goldenrod;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: black;
+            color: goldenrod;
+            transform: scale(1.1);
+            box-shadow: 0 0 10px 2px goldenrod;
+        }
+
+        .otp-section {
+            display: none;
+        }
+
+        /* for svg adjustment*/
+
+        .input-container {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Adjust spacing between the SVG and input field */
+        }
+
+        .input-container svg {
+            flex-shrink: 0; /* Prevent SVG from resizing */
+            width: 24px;
+            height: 24px;
+            fill: goldenrod;
+        }
+
+        .input-container input {
+            flex: 1; /* Allow the input field to take the remaining space */
+            
+            fill: goldenrod;
+        }
+
+
+        @media (max-width: 768px) {
+            .registration-container {
+                padding: 20px;
+            }
+
+            .button {
+                width: 100%;
+            }
+        }
+
+        .password-feedback {
+            font-size: 0.9em;
+            color: red;
+            margin-top: 5px;
+        }
+
+        .password-feedback.valid {
+            color: green;
+        }
+    </style>
+    <script>
+        function validatePassword() {
+            const password = document.getElementById('password').value;
+            const feedback = document.getElementById('password-feedback');
+            const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$&])[A-Za-z\d!@#$&]{10,}$/;
+
+            if (regex.test(password)) {
+                feedback.textContent = 'Password is valid';
+                feedback.classList.add('valid');
+                feedback.classList.remove('invalid');
+            } else {
+                feedback.textContent = 'Password must be at least 10 characters long and include at least one uppercase letter, one lowercase letter, one digit, and one special character (!@#$&)';
+                feedback.classList.add('invalid');
+                feedback.classList.remove('valid');
+            }
+        }
+
+        function validateRePassword() {
+            const password = document.getElementById('password').value;
+            const repassword = document.getElementById('repassword').value;
+            const feedback = document.getElementById('repassword-feedback');
+
+            if (password === repassword) {
+                feedback.textContent = 'Passwords match';
+                feedback.classList.add('valid');
+                feedback.classList.remove('invalid');
+            } else {
+                feedback.textContent = 'Passwords do not match';
+                feedback.classList.add('invalid');
+                feedback.classList.remove('valid');
+            }
+        }
+
+        function showOtpSection() {
+            const passwordFeedback = document.getElementById('password-feedback');
+            const rePasswordFeedback = document.getElementById('repassword-feedback');
+
+            if (passwordFeedback.classList.contains('valid') && rePasswordFeedback.classList.contains('valid')) {
+                document.querySelector('.otp-section').style.display = 'block';
+            } else {
+                alert('Please fix the issues with your password before proceeding.');
+            }
+        }
+
+        function login() {
+            alert('Logged in successfully!');
+        }
+    </script>
+</head>
+<body>
+    <form action="">
+    <div class="registration-container">
+        <h1>Welcome to Project Lottery</h1>
+        <h2>Register</h2>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <div class="input-container">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" style="fill: goldenrod;">
+                    <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Z"/>
+                </svg>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="number">Number</label>
+            <div class="input-container">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.314 28.323" style="enable-background:new 0 0 28.314 28.323" xml:space="preserve" style="fill: goldenrod;"><path d="m27.728 20.384-4.242-4.242a1.982 1.982 0 0 0-1.413-.586h-.002c-.534 0-1.036.209-1.413.586L17.83 18.97l-8.485-8.485 2.828-2.828c.78-.78.78-2.05-.001-2.83L7.929.585A1.986 1.986 0 0 0 6.516 0h-.001C5.98 0 5.478.209 5.101.587L.858 4.83C.729 4.958-.389 6.168.142 8.827c.626 3.129 3.246 7.019 7.787 11.56 6.499 6.499 10.598 7.937 12.953 7.937 1.63 0 2.426-.689 2.604-.867l4.242-4.242c.378-.378.587-.881.586-1.416 0-.534-.208-1.037-.586-1.415zm-5.656 5.658c-.028.028-3.409 2.249-12.729-7.07C-.178 9.452 2.276 6.243 2.272 6.244L6.515 2l4.243 4.244-3.535 3.535a.999.999 0 0 0 0 1.414l9.899 9.899a.999.999 0 0 0 1.414 0l3.535-3.536 4.243 4.244-4.242 4.242z"/></svg>
+            <input type="tel" id="number" name="number" placeholder="Enter your number" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <div class="input-container"><span style="font-weight: bolder;">@&nbsp;&nbsp;</span>
+            <input type="email" id="email" name="email" placeholder="Enter your e-mail" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password">Create Password</label>
+            <div class="input-container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M0 15v6a3 3 0 0 0 3 3h21v-2H3a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h21v-2H3a3 3 0 0 0-3 3z"/><path d="M17 19h4v2h-4zM22 19h2v2h-2zM8.544 16.121 7 16.623V15H5v1.623l-1.544-.502-.618 1.902 1.544.502-.954 1.314 1.617 1.176L6 19.701l.955 1.314 1.618-1.176-.955-1.314 1.544-.502-.618-1.902zM15.691 16.121l-1.544.502V15h-2v1.623l-1.544-.502-.618 1.902 1.544.502-.955 1.314 1.619 1.176.954-1.314.956 1.314 1.618-1.176-.955-1.314 1.544-.502-.619-1.902zM6 0a3 3 0 0 0-3 3v1H2v6h8V4H9V3a3 3 0 0 0-3-3zM5 3a1 1 0 0 1 2 0v1H5z"/></svg>
+            <input type="password" id="password" name="password" placeholder="Create your password" required oninput="validatePassword()">
+            </div>
+            <div id="password-feedback" class="password-feedback"></div>
+        </div>
+        <div class="form-group">
+            <label for="repassword">Re-enter Password</label>
+            <div class="input-container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M0 15v6a3 3 0 0 0 3 3h21v-2H3a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h21v-2H3a3 3 0 0 0-3 3z"/><path d="M17 19h4v2h-4zM22 19h2v2h-2zM8.544 16.121 7 16.623V15H5v1.623l-1.544-.502-.618 1.902 1.544.502-.954 1.314 1.617 1.176L6 19.701l.955 1.314 1.618-1.176-.955-1.314 1.544-.502-.618-1.902zM15.691 16.121l-1.544.502V15h-2v1.623l-1.544-.502-.618 1.902 1.544.502-.955 1.314 1.619 1.176.954-1.314.956 1.314 1.618-1.176-.955-1.314 1.544-.502-.619-1.902zM6 0a3 3 0 0 0-3 3v1H2v6h8V4H9V3a3 3 0 0 0-3-3zM5 3a1 1 0 0 1 2 0v1H5z"/></svg>
+            <input type="password" id="repassword" name="repassword" placeholder="Re-enter your password" required oninput="validateRePassword()">
+            </div>
+            <div id="repassword-feedback" class="password-feedback"></div>
+        </div>
+        <button class="button" onclick="showOtpSection()">Send OTP</button>
+
+        <div class="otp-section">
+            <div class="form-group">
+                <label for="otp">Enter OTP</label>
+                <input type="text" id="otp" name="otp" placeholder="Enter OTP" required>
+            </div>
+            <button class="button" onclick="login()">Verify & Register</button>
+        </div>
+    </div>
+    </form>
+</body>
+</html>
